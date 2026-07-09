@@ -14,9 +14,9 @@ class TestProjectEdge:
     def test_save_as(self, tmp_path: Path):
         project = Project()
         project.start()
-        path = tmp_path / "saved_as.dinpro"
+        path = tmp_path / "saved_as"
         project.save_as(str(path))
-        assert path.exists()
+        assert (tmp_path / "saved_as.din").exists()
 
     def test_axis_loaded_in_project(self):
         project = Project()
