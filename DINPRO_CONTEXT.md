@@ -2,7 +2,7 @@
 
 **Versión:** 0.0.1
 **Sprint:** 0
-**Último commit:** _(pendiente)_
+**Último commit:** `96dd83e`
 
 ---
 
