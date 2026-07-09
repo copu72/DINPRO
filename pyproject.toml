@@ -5,10 +5,52 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dinpro"
 version = "0.1.0"
-description = "Infrastructure Design and Engineering Platform"
+description = "Plataforma modular para el análisis, diseño y documentación técnica de infraestructuras lineales"
 requires-python = ">=3.10"
+authors = [
+    { name = "DINPRO Team" },
+]
 dependencies = []
 
 [project.optional-dependencies]
-dev = []
-test = []
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+    "black>=23.0",
+    "isort>=5.0",
+    "mypy>=1.0",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["dinpro*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=dinpro --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true

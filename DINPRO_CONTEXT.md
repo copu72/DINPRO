@@ -1,8 +1,8 @@
 # DINPRO — Contexto del proyecto
 
-**Versión:** 0.0.1
-**Sprint:** 0.5 (Diseño del Core)
-**Último commit:** `ca84b54`
+**Versión:** 0.1.0
+**Sprint:** 1 (Core implementado)
+**Último commit:** `(pendiente)`
 
 ---
 
@@ -15,39 +15,43 @@
 - [x] Reglas para IA
 - [x] Roadmap
 - [x] Estructura del repositorio
-- [x] API pública del Core (especificación)
-- [x] Clase Project (especificación)
-- [x] Clase Axis (especificación)
-- [x] Clase Geometry (especificación)
-- [x] Settings / Logger / PluginManager / EventBus (especificación)
-- [x] Contrato Module (especificación)
-- [ ] Project (implementación)
-- [ ] Logger (implementación)
-- [ ] Settings (implementación)
-- [ ] PluginManager (implementación)
-- [ ] EventBus (implementación)
-- [ ] Sistema de errores
-- [ ] Core geométrico
+- [x] Paquete `dinpro` instalable
+- [x] **Application** — punto de entrada (singleton)
+- [x] **Project** — objeto único del programa
+- [x] **Axis** — eje, PK, vértices, interpolación
+- [x] **Geometry** — operaciones espaciales
+- [x] **Settings** — configuración global
+- [x] **Logger** — logging centralizado
+- [x] **PluginManager** — carga de módulos
+- [x] **ResultManager** — almacenamiento de resultados
+- [x] **EventBus** — comunicación por eventos
+- [x] **Version** — versión SemVer
+- [x] **Errors** — jerarquía de excepciones
+- [x] Tests unitarios (111 tests, 91 % cobertura)
+- [x] Herramientas: ruff, black, isort, mypy, pytest
+- [ ] AutoCAD
+- [ ] Geometría avanzada
+- [ ] PK
+- [ ] Buffer
 - [ ] Municipios
 - [ ] Catastro
 - [ ] Carreteras
 - [ ] Ríos
 - [ ] Infraestructuras
 - [ ] GUI
-- [ ] Importadores / Exportadores
-- [ ] API / SDK
 
 ---
 
 ## Pendiente
 
-- Implementar el Core completo (Sprint 1)
-- Sistema de plugins
-- Sistema de eventos
-- Gestión de errores
+- Plugin AutoCAD (Sprint 2)
+- Geometría avanzada (Sprint 3)
+- PK (Sprint 4)
+- Buffer (Sprint 5)
+- Módulos de negocio (Municipios, Carreteras, etc.)
 
 ---
 
 ## Próximo objetivo
 
-**Sprint 1** — Implementación del Core. Release v0.1.0.
+**Sprint 2** — Plugin AutoCAD.

@@ -22,6 +22,9 @@ venv/
 temp/
 data/cache/
 
+# Logs
+*.log
+
 # OS
 Thumbs.db
 .DS_Store
