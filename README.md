@@ -1,31 +1,41 @@
 # DINPRO
 
-Plataforma de ingeniería y diseño de infraestructuras.
+**Plataforma modular para el análisis, diseño y documentación técnica de infraestructuras lineales.**
 
-## Arquitectura
+Basada en datos oficiales, construida con estándares profesionales, preparada para evolucionar durante años.
+
+## Filosofía
+
+- **Plugin-based**: el Core no conoce los módulos. Los módulos conocen el Core.
+- **Specs first**: nada entra en `src/` sin pasar por `docs/`.
+- **Fases estrictas**: no se salta ninguna fase del desarrollo.
+
+## Estructura
 
 ```
 DINPRO
-├── docs/      → Documentación del proyecto
-├── specs/     → Especificaciones funcionales y técnicas
-├── src/       → Código fuente (Core + Plugins + SDK)
-├── tests/     → Pruebas
-├── data/      → Datos oficiales y caché
-├── resources/ → Iconos, temas, fuentes
-├── examples/  → Proyectos de ejemplo
-├── assets/    → Recursos gráficos del proyecto
-├── devtools/  → Herramientas de desarrollo
-├── sandbox/   → Prototipos y experimentos
-├── installer/ → Instalador
-└── scripts/   → Automatización
+├── .github/     → CI/CD y plantillas
+├── docs/        → Manifiesto, visión, arquitectura, estándares
+├── src/         → Código fuente (Core + Plugins + SDK)
+├── tests/       → Pruebas
+├── data/        → Datos oficiales y caché
+├── tools/       → Herramientas de desarrollo
+├── resources/   → Iconos, temas, fuentes
+├── examples/    → Proyectos de ejemplo
+├── assets/      → Recursos gráficos del proyecto
+├── scripts/     → Automatización
+└── specs/       → Casos de uso, diagramas, interfaces
 ```
 
-## Reglas de arquitectura
+## Documentación fundacional
 
-1. **El Core nunca cambia** — ninguna funcionalidad externa modifica `src/core/`.
-2. **Nada entra en `src/` sin pasar por `specs/`** — primero se diseña, luego se implementa.
-3. **Cada plugin es autocontenido** con su propio controller, services, models, repository, exporter y settings.
+- [00_MANIFIESTO.md](docs/00_MANIFIESTO.md) — Constitución del proyecto
+- [01_VISION.md](docs/01_VISION.md) — Visión y principios
+- [02_ARQUITECTURA.md](docs/02_ARQUITECTURA.md) — Arquitectura y reglas
+- [03_ESTANDARES.md](docs/03_ESTANDARES.md) — Estándares de código
+- [04_REGLAS_IA.md](docs/04_REGLAS_IA.md) — Reglas para IA contribuyente
+- [05_ROADMAP.md](docs/05_ROADMAP.md) — Hoja de ruta
 
 ## Licencia
 
-Ver archivo [LICENSE](LICENSE).
+[MIT](LICENSE)

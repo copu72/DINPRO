@@ -1,27 +1,31 @@
 # DINPRO — Contexto del proyecto
 
-**Versión:** 0.1.0
+**Versión:** 0.0.1
 **Sprint:** 0
-**Último commit:** `7ffe98b`
+**Último commit:** _(pendiente)_
 
 ---
 
 ## Módulos terminados
 
+- [x] Manifiesto del proyecto
+- [x] Visión
 - [x] Arquitectura
-- [x] Estructura del proyecto
-- [ ] GUI
-- [ ] Geometría
+- [x] Estándares
+- [x] Reglas para IA
+- [x] Roadmap
+- [x] Estructura del repositorio
+- [ ] Core geométrico
+- [ ] Logger
+- [ ] Config
+- [ ] Buffer
 - [ ] PK
 - [ ] Municipios
 - [ ] Catastro
 - [ ] Carreteras
 - [ ] Ríos
 - [ ] Infraestructuras
-- [ ] Motor geométrico
-- [ ] Logger
-- [ ] Config
-- [ ] Buffer
+- [ ] GUI
 - [ ] Importadores / Exportadores
 - [ ] API
 - [ ] SDK
@@ -30,15 +34,11 @@
 
 ## Pendiente
 
-- Crear motor geométrico
-- Implementar plugins (Municipios, Catastro, Carreteras, Ríos, Infraestructuras)
-- Desarrollar GUI
+- Implementar motor geométrico base (`src/core/geometry/`)
 - Sistema de logging
-- Configuración
+- Configuración global
 - Buffer de operaciones
-- Importadores y exportadores (DXF, DWG, Excel, SHP, GPKG)
-- API pública
-- SDK para plugins externos
+- Sistema de plugins
 
 ---
 
