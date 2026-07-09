@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from dinpro.cad.base.cad_adapter import CADAdapter
-from dinpro.cad.base.entity import Block, BlockAttribute, Circle, Layer, Line, Polyline, Text
+from dinpro.cad.base.entity import Block, Circle, Layer, Line, Polyline, Text
 from dinpro.cad.dxf.reader import DXFReader
 
 
@@ -26,7 +26,9 @@ class DXFAdapter(CADAdapter):
 
     def get_polylines(self, layer: str | None = None) -> list[Polyline]:
         self._ensure_open()
-        return self._reader.get_entities("POLYLINE", layer) + self._reader.get_entities("LWPOLYLINE", layer)
+        polylines = self._reader.get_entities("POLYLINE", layer)
+        lwpolylines = self._reader.get_entities("LWPOLYLINE", layer)
+        return polylines + lwpolylines
 
     def get_lines(self, layer: str | None = None) -> list[Line]:
         self._ensure_open()

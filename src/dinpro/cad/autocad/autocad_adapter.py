@@ -48,7 +48,8 @@ class AutoCADAdapter(CADAdapter):
                 vertices = []
                 for i in range(ent.NumberOfVertices):
                     v = ent.Coordinate(i)
-                    vertices.append((float(v[0]), float(v[1]), float(v[2]) if hasattr(v, 'z') else 0.0))
+                    vz = float(v[2]) if hasattr(v, "z") else 0.0
+                    vertices.append((float(v[0]), float(v[1]), vz))
                 result.append(Polyline(
                     layer=ent.Layer,
                     color=ent.Color,

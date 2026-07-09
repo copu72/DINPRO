@@ -1,4 +1,4 @@
-from dinpro.cad.base.entity import Block, BlockAttribute, Circle, Layer, Line, Polyline, Text
+from dinpro.cad.base.entity import Block, Circle, Layer, Line, Polyline, Text
 
 
 class DXFReader:
@@ -106,7 +106,12 @@ class DXFReader:
         while i < len(pairs):
             code, value = pairs[i]
             if code == 0:
-                if value in ("LINE", "CIRCLE", "TEXT", "MTEXT", "POLYLINE", "LWPOLYLINE", "VERTEX", "SEQEND", "BLOCK", "ENDBLK", "INSERT", "ATTDEF", "ATTRIB"):
+                entity_types = frozenset({
+                    "LINE", "CIRCLE", "TEXT", "MTEXT", "POLYLINE",
+                    "LWPOLYLINE", "VERTEX", "SEQEND", "BLOCK",
+                    "ENDBLK", "INSERT", "ATTDEF", "ATTRIB",
+                })
+                if value in entity_types:
                     entity_pairs = [(code, value)]
                     i += 1
                     while i < len(pairs):
@@ -195,7 +200,9 @@ class DXFReader:
             i += 1
         return vertices
 
-    def _collect_polyline_vertices(self, pairs: list[tuple[int, str]]) -> tuple[list[tuple[float, float, float]], bool]:
+    def _collect_polyline_vertices(
+        self, pairs: list[tuple[int, str]]
+    ) -> tuple[list[tuple[float, float, float]], bool]:
         vertices: list[tuple[float, float, float]] = []
         closed = False
         for i, (code, value) in enumerate(pairs):
@@ -218,7 +225,9 @@ class DXFReader:
                 closed = True
         return vertices, closed
 
-    def _compute_length_3d(self, p1: tuple[float, float, float], p2: tuple[float, float, float]) -> float:
+    def _compute_length_3d(
+        self, p1: tuple[float, float, float], p2: tuple[float, float, float]
+    ) -> float:
         dx = p2[0] - p1[0]
         dy = p2[1] - p1[1]
         dz = p2[2] - p1[2]

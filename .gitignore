@@ -25,6 +25,11 @@ data/cache/
 # Logs
 *.log
 
+# Coverage
+.coverage
+htmlcov/
+.coverage.*
+
 # OS
 Thumbs.db
 .DS_Store

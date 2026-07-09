@@ -5,7 +5,7 @@ import inspect
 from pathlib import Path
 from typing import Any
 
-from dinpro.core.errors import PluginError, PluginNotFoundError, PluginLoadError
+from dinpro.core.errors import PluginError, PluginLoadError, PluginNotFoundError
 from dinpro.core.logger import Logger
 
 
