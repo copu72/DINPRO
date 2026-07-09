@@ -1,14 +1,18 @@
-# Specs — Especificaciones del proyecto
+# Specs — Especificaciones técnicas
 
 Todo el diseño debe estar documentado aquí antes de pasar a implementación.
 
 ```
 specs/
-├── use_cases/    → Casos de uso
-├── uml/          → Diagramas UML
-├── flowcharts/   → Diagramas de flujo
-├── database/     → Esquema de base de datos
-├── plugins/      → Especificación de plugins
-├── interfaces/   → Interfaces y contratos
-└── protocols/    → Protocolos de comunicación
+├── core/           → Arquitectura, API, clases, contratos del Core
+│   ├── api/        →   Arquitectura de API, secuencia de arranque
+│   ├── classes/    →   Project, Axis, Geometry, Settings, Logger...
+│   ├── contracts/  →   Module (clase base para plugins)
+│   └── interfaces/ →   Protocolos y tipos
+├── sdk/            → SDK para desarrollo de plugins externos
+├── use_cases/      → Casos de uso
+├── uml/            → Diagramas UML
+├── flowcharts/     → Diagramas de flujo
+├── database/       → Esquema de base de datos
+└── protocols/      → Protocolos de comunicación
 ```

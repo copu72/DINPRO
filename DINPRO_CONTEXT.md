@@ -1,8 +1,8 @@
 # DINPRO — Contexto del proyecto
 
 **Versión:** 0.0.1
-**Sprint:** 0
-**Último commit:** `96dd83e`
+**Sprint:** 0.5 (Diseño del Core)
+**Último commit:** `ca84b54`
 
 ---
 
@@ -15,11 +15,19 @@
 - [x] Reglas para IA
 - [x] Roadmap
 - [x] Estructura del repositorio
+- [x] API pública del Core (especificación)
+- [x] Clase Project (especificación)
+- [x] Clase Axis (especificación)
+- [x] Clase Geometry (especificación)
+- [x] Settings / Logger / PluginManager / EventBus (especificación)
+- [x] Contrato Module (especificación)
+- [ ] Project (implementación)
+- [ ] Logger (implementación)
+- [ ] Settings (implementación)
+- [ ] PluginManager (implementación)
+- [ ] EventBus (implementación)
+- [ ] Sistema de errores
 - [ ] Core geométrico
-- [ ] Logger
-- [ ] Config
-- [ ] Buffer
-- [ ] PK
 - [ ] Municipios
 - [ ] Catastro
 - [ ] Carreteras
@@ -27,21 +35,19 @@
 - [ ] Infraestructuras
 - [ ] GUI
 - [ ] Importadores / Exportadores
-- [ ] API
-- [ ] SDK
+- [ ] API / SDK
 
 ---
 
 ## Pendiente
 
-- Implementar motor geométrico base (`src/core/geometry/`)
-- Sistema de logging
-- Configuración global
-- Buffer de operaciones
+- Implementar el Core completo (Sprint 1)
 - Sistema de plugins
+- Sistema de eventos
+- Gestión de errores
 
 ---
 
 ## Próximo objetivo
 
-**Sprint 1** — Implementar el motor geométrico base (`src/core/geometry/`).
+**Sprint 1** — Implementación del Core. Release v0.1.0.

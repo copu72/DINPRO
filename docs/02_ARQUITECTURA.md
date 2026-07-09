@@ -4,23 +4,27 @@
 
 ```
 DINPRO
-├── .github/
-├── docs/
-├── src/
-│   ├── core/       → Geometry, Project, Engine, Logger, Config, PK, Buffer
-│   ├── plugins/    → municipalities, cadastre, roads, rivers, ...
-│   ├── gui/
-│   ├── io/
-│   ├── services/
-│   ├── api/
-│   └── sdk/
+├── .github/       → CI/CD y plantillas
+├── docs/          → Documentación del proyecto
+├── specs/         → Especificaciones técnicas detalladas
+│   ├── core/      →   API, clases, contratos del Core
+│   ├── sdk/       →   SDK para plugins externos
+│   └── ...
+├── src/           → Código fuente
+│   ├── core/      →   Project, Axis, Geometry, Logger, Settings...
+│   ├── plugins/   →   municipalities, cadastre, roads, rivers...
+│   ├── gui/       →   Interfaz de usuario
+│   ├── io/        →   Importadores / Exportadores
+│   ├── api/       →   API pública
+│   └── sdk/       →   SDK para desarrollo de plugins
 ├── tests/
 ├── data/
-├── tools/
+├── tools/         → Herramientas de desarrollo
 ├── resources/
 ├── examples/
-├── scripts/
-└── assets/
+├── assets/        → Recursos gráficos del proyecto
+├── scripts/       → Automatización
+└── specs/         → Casos de uso, diagramas, interfaces, contratos
 ```
 
 ## Regla fundamental
@@ -28,26 +32,46 @@ DINPRO
 **El Core nunca conoce los módulos.**
 
 ```
-✅  Core ← Módulo
-❌  Módulo → Core
+✅  Módulo → Core API → Módulo
+❌  Módulo → Módulo (directo)
+❌  Core → Módulo
 ```
 
-El Core es la base estable. Los plugins se conectan al Core, nunca al revés.
+Los módulos se comunican exclusivamente a través de la API del Core.
 
 ## Flujo de trabajo del proyecto
 
 ```
-FASE 0 → Documentación
-FASE 1 → Arquitectura
-FASE 2 → Core
-FASE 3 → Módulos
-FASE 4 → GUI
-FASE 5 → Pruebas
-FASE 6 → Instalador
+FASE 0  → Documentación      (Sprint 0)
+FASE 1  → Arquitectura       (Sprint 0.5)
+FASE 2  → Core               (Sprint 1)
+FASE 3  → Módulos            (Sprints 2-11)
+FASE 4  → GUI                (Sprint 12)
+FASE 5  → Pruebas            (transversal)
+FASE 6  → Instalador         (final)
 ```
-
-No se saltan fases. Cada fase completa a la anterior.
 
 ## Especificación primero
 
-Nada entra en `src/` sin haber pasado por `docs/` primero. Se diseña, se documenta, se implementa.
+Nada entra en `src/` sin haber pasado por `specs/` primero.
+Se diseña la API, se documenta, se implementa.
+
+## Estructura del Core
+
+```
+Project
+├── Settings
+├── Axis
+├── Geometry
+├── Results
+├── Logger
+├── PluginManager
+├── EventBus
+├── Version
+├── Workspace
+└── ErrorHandler
+```
+
+## Diseño para v10.0
+
+Cada decisión de diseño se toma pensando en que DINPRO seguirá activo dentro de 10 años. No se sacrifica arquitectura por rapidez.
