@@ -1,0 +1,6 @@
+# Core dependencies
+
+# Development
+# pytest
+# black
+# ruff

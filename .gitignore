@@ -1,0 +1,30 @@
+# Environment
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project temp
+temp/
+data/cache/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Installer artifacts
+installer/output/
