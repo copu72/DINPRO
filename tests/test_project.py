@@ -50,7 +50,7 @@ class TestProject:
             self.project.open("/nonexistent/file.dinpro")
 
     def test_version_string(self):
-        assert str(self.project.version) == "0.2.0"
+        assert str(self.project.version) == "0.3.1"
 
     def test_events_on_save(self, tmp_path: Path):
         received = []

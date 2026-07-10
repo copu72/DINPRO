@@ -17,7 +17,7 @@ class Application:
         if self._initialized:
             return
         self._project: Project | None = None
-        self._version = Version(0, 1, 0)
+        self._version = Version(0, 3, 1)
         self._initialized = True
 
     def start(self) -> Project:

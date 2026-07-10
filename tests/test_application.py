@@ -26,4 +26,4 @@ class TestApplication:
 
     def test_version(self):
         app = Application()
-        assert str(app.version) == "0.1.0"
+        assert str(app.version) == "0.3.1"

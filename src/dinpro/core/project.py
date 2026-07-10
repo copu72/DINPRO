@@ -18,7 +18,7 @@ class Project:
 
     def __init__(self, path: str | Path | None = None) -> None:
         self._path = Path(path) if path else None
-        self._version = Version(0, 2, 0)
+        self._version = Version(0, 3, 1)
         self._logger = Logger()
         self._settings = Settings()
         self._axis = Axis()

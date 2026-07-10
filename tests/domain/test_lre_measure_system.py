@@ -1,11 +1,13 @@
 import math
+
 import pytest
+
+from dinpro.domain.axis import Axis
 from dinpro.domain.linear_referencing.measure_system import (
     CalibrationPoint,
     MeasureDiscontinuity,
     MeasureSystem,
 )
-from dinpro.domain.axis import Axis
 
 
 class TestCalibrationPoint:

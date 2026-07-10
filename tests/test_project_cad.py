@@ -33,7 +33,7 @@ class TestProjectCAD:
         assert din_file.exists()
 
         content = din_file.read_text(encoding="utf-8")
-        assert "0.2.0" in content
+        assert "0.3.1" in content
         assert "test" in content
 
     def test_load_saved_project(self, tmp_path: Path):
@@ -78,4 +78,4 @@ class TestProjectCAD:
 
     def test_version_updated(self):
         project = Project()
-        assert "0.2.0" in str(project.version)
+        assert "0.3.1" in str(project.version)
