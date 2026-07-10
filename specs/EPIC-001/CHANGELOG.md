@@ -20,7 +20,13 @@
 
 ### Sprint 4.1 — MeasureSystem
 
-*Pendiente de implementar*
+- Implementado `MeasureSystem` como servicio del dominio
+- `CalibrationPoint` y `MeasureDiscontinuity` como dataclasses
+- Soporte para: calibraciones, discontinuidades, interpolación lineal
+- `pk_at_distance` / `distance_at_pk` bidireccionales
+- `validate()` con detección de desviación >1%
+- 24 tests, ruff clean, mypy clean, 96% cobertura
+- Pendiente de Architect Review
 
 ### Sprint 4.2 — AdvancedStationing
 
