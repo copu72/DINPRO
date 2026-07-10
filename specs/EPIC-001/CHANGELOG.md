@@ -30,7 +30,14 @@
 
 ### Sprint 4.2 — AdvancedStationing
 
-*Pendiente de implementar*
+- Implementado `Station` como Value Object inmutable, comparable, hasheable, ordenable
+- `StationParser` determinista sin expresiones regulares
+- `StationFormatter` con 4 estrategias: Classic, Decimal, Engineering, Custom
+- i18n desde diseño: separador decimal, separador PK, prefijo configurables
+- Parsing robusto: `15+345.20`, `PK 15+345`, `pk15+345`, `15 + 345`, `15+345,20`
+- 100 tests, ruff clean, mypy clean, 99-100% cobertura en módulos core
+- Tests de propiedades: roundtrip parse(format(x))==x, hash, comparaciones
+- Pendiente de Architect Review
 
 ### Sprint 4.3 — LateralProjection
 

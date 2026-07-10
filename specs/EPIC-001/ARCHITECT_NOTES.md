@@ -72,7 +72,58 @@ el eje. No se implementa en Sprint 4.1 pero queda como requisito de evolución.
 
 ## Sprint 4.2 — AdvancedStationing
 
-*Pendiente*
+### Station como Value Object
+
+`Station` es un Value Object inmutable (`@dataclass(frozen=True)`). 
+Implementa `__lt__`, `__le__`, `__gt__`, `__ge__`, `__eq__`, `__hash__` para 
+comportarse como `datetime` o `Path`. La igualdad usa `math.isclose` con 
+tolerancia 1e-9.
+
+### Parsing sin expresiones regulares
+
+`StationParser` usa una secuencia determinista:
+1. Eliminar prefijo (PK, P.K., pk...)
+2. Normalizar separador PK al canónico `+`
+3. Detectar signo
+4. Si hay separador PK: dividir en km + m
+5. Si no: parsear como float
+
+i18n: separador decimal (`.` o `,`), separador PK (`+`, `-`...), prefijo 
+configurables desde el constructor. No se implementan todas las variantes, 
+pero la API no las impide.
+
+### Formateo por estrategia
+
+`StationFormatter` es un ABC con 4 estrategias:
+- `ClassicFormatter`: `15+345.20` (2 decimales por defecto)
+- `DecimalFormatter`: `15345.200` (3 decimales)
+- `EngineeringFormatter`: `15+345.200` (3 decimales en metros)
+- `CustomFormatter`: configuración total (prefijo, separadores, decimales)
+
+Cada formatter es independiente y testeable. No existe lógica de formateo 
+fuera de los formatters.
+
+### Tests de propiedades
+
+Se incluyen tests de ida y vuelta:
+- `parse(format(station)) == station.value`
+- `format(parse(text))` produce representación canónica
+- Reflexividad, simetría, transitividad de `==`, `<`, `>`
+- Consistencia de `hash` con `==`
+
+### Observaciones del Architect Review (v0.1)
+
+1. **Representación canónica de Station**: `repr(station)` debe ser inequívoco
+   (actualmente `Station(15345.235)`), mientras que `str(station)` usa el formatter
+   por defecto del proyecto. Esto facilita debugging.
+
+2. **StationParser stateless**: El parser ya es inmutable (configuración recibida en
+   el constructor), pero debe garantizarse que no mantenga estado mutable. Es seguro
+   para concurrencia.
+
+3. **Formattable (futuro)**: Se introducirá una interfaz común `Formattable` con
+   `obj.format(...)` para que `Station`, `Measure`, `PK`, `LinearEvent` compartan
+   la misma filosofía de representación. Pendiente de implementar.
 
 ---
 
