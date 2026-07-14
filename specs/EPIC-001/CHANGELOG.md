@@ -50,7 +50,9 @@
 - `Segment` con: reverse(), contains(), intersects(), clip(), offset(), to_axis()
 - `_extract_subpolyline()` para extraer subtramos del eje
 - 46 tests, ruff clean, mypy clean, cobertura 94-97%
-- Pendiente de Architect Review
+- **Architect Review:** 🟢 APPROVED (commit d47a15f)
+- Correcciones aplicadas: `Segment.id` estable, `offset()` sin parámetro `side`, `reverse()` documentado
+- **Tag:** `v0.4.0-sprint-4.4`
 
 ### Sprint 4.5 — LinearEvents
 
