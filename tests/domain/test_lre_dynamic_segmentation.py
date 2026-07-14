@@ -169,12 +169,12 @@ class TestSegmentToAxis:
 class TestSegmentOffset:
     def test_offset_returns_polygon(self, ds):
         s = ds.segment(Station(100.0), Station(400.0))
-        corr = s.offset(25, side="left")
+        corr = s.offset(25)
         assert isinstance(corr, Polygon)
 
     def test_offset_right(self, ds):
         s = ds.segment(Station(100.0), Station(400.0))
-        corr = s.offset(25, side="right")
+        corr = s.offset(25)
         assert isinstance(corr, Polygon)
 
 
@@ -316,6 +316,6 @@ class TestEdgeCases:
 
     def test_segment_then_offset(self, ds):
         s = ds.segment(Station(100.0), Station(500.0))
-        corr = s.offset(50, side="left")
+        corr = s.offset(50)
         assert isinstance(corr, Polygon)
         assert len(corr.vertices) > 0

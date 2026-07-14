@@ -62,14 +62,17 @@ class Segment:
     _geometry: Polyline = field(repr=False, compare=False)
     _attributes: dict[str, Any] = field(default_factory=dict, repr=False, compare=False)
     _metadata: dict[str, Any] = field(default_factory=dict, repr=False, compare=False)
+    _id: str = field(default="", repr=False, compare=False)
 
     def __post_init__(self) -> None:
         if self._start.value >= self._end.value:
             raise ValueError("Segment start must be before end")
+        if not self._id:
+            object.__setattr__(self, "_id", uuid.uuid4().hex[:12])
 
     @property
     def id(self) -> str:
-        return uuid.uuid4().hex[:12]
+        return self._id
 
     @property
     def axis(self) -> Axis:
@@ -132,7 +135,6 @@ class Segment:
     def offset(
         self,
         distance: float,
-        side: str = "left",
         steps: int = 50,
     ) -> Polygon:
         from dinpro.domain.lateral.lateral_projection import LateralProjection
