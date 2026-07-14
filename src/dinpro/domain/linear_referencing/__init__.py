@@ -1,4 +1,9 @@
 from dinpro.domain.linear_referencing.dynamic_segmentation import DynamicSegmentation
+from dinpro.domain.linear_referencing.event_metadata import EventMetadata
+from dinpro.domain.linear_referencing.event_reference import EventReference
+from dinpro.domain.linear_referencing.event_type import EventSource, EventStatus, EventType
+from dinpro.domain.linear_referencing.linear_event import LinearEvent
+from dinpro.domain.linear_referencing.linear_event_set import LinearEventSet
 from dinpro.domain.linear_referencing.linear_referencing import LinearReferencing
 from dinpro.domain.linear_referencing.measure_system import (
     CalibrationPoint,
@@ -32,4 +37,11 @@ __all__ = [
     "DecimalFormatter",
     "EngineeringFormatter",
     "CustomFormatter",
+    "EventType",
+    "EventSource",
+    "EventStatus",
+    "EventMetadata",
+    "EventReference",
+    "LinearEvent",
+    "LinearEventSet",
 ]
