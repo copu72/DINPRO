@@ -43,6 +43,12 @@
 
 *Pendiente de implementar*
 
+### Sprint 4.5 — LinearEvents
+
+- *Pendiente de implementar*
+- SPEC creada en `Sprint-4.5-LinearEvents.md`
+- Diseño basado en `LinearEvent` (VO versionado) y `LinearEventSet` (aggregate root)
+
 ### Sprint 4.4 — DynamicSegmentation
 
 - Implementado `Segment` como Value Object inmutable del dominio

@@ -135,15 +135,57 @@ Se incluyen tests de ida y vuelta:
 
 ## Sprint 4.4 — DynamicSegmentation
 
-*Pendiente*
+### Decisiones de diseño
+
+- **D-09:** Segment.id se genera una vez en `__post_init__` y es estable durante toda la vida del objeto (UUID hex[:12]).
+- **D-10:** `Segment.offset()` genera un corredor bilateral simétrico. El parámetro `side` se eliminó hasta que `LateralProjection` implemente offset unilateral.
+- **D-11:** `Segment.reverse()` invierte la geometría pero preserva `station_start`/`station_end`. El intervalo de PK no cambia.
+- **D-12:** La API pública del LRE se congela a partir de `v0.4.0-sprint-4.4` — ver `PUBLIC_API.md`.
+
+### Resultados
+
+| Métrica | Valor |
+|---------|-------|
+| Tests | 616 total, 0 fallos |
+| Cobertura DynamicSegmentation | 94–97% |
+| ruff | ✅ |
+| mypy | ✅ |
+| Architect Review | 🟢 APPROVED |
+| Tag | `v0.4.0-sprint-4.4` |
 
 ---
 
 ## Sprint 4.5 — LinearEvents
 
+*Pendiente — SPEC creada*
+
+---
+
+## Sprint 4.6 — RouteCalibration
+
 *Pendiente*
 
 ---
+
+## Sprint 4.7 — LongitudinalProfile
+
+*Pendiente*
+
+---
+
+## Sprint 4.8 — Exporter
+
+*Pendiente*
+
+---
+
+## Sprint 4.9 — Integración + Benchmarks
+
+*Pendiente*
+
+---
+
+
 
 ## Sprint 4.6 — RouteCalibration
 
