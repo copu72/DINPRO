@@ -45,7 +45,12 @@
 
 ### Sprint 4.4 — DynamicSegmentation
 
-*Pendiente de implementar*
+- Implementado `Segment` como Value Object inmutable del dominio
+- `DynamicSegmentation` como servicio: segment(), split(), merge()
+- `Segment` con: reverse(), contains(), intersects(), clip(), offset(), to_axis()
+- `_extract_subpolyline()` para extraer subtramos del eje
+- 46 tests, ruff clean, mypy clean, cobertura 94-97%
+- Pendiente de Architect Review
 
 ### Sprint 4.5 — LinearEvents
 
