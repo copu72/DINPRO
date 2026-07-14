@@ -157,7 +157,44 @@ Se incluyen tests de ida y vuelta:
 
 ## Sprint 4.5 — LinearEvents
 
-*Pendiente — SPEC creada*
+### Decisiones de diseño
+
+- **DA-005:** `LinearEvent` representa hechos del dominio. Nunca contiene lógica geométrica — toda geometría pertenece al GSE.
+- **DA-006:** Los eventos son inmutables. Cada modificación genera una nueva instancia (versionado inmutable).
+- **DA-007:** `LinearEventSet` es un Aggregate Root, no una colección. Expone `filter()`, `sort()`, `merge()`, `split()`, `group_by()`, `statistics()`.
+- **DA-008:** Todo evento tiene identidad estable (`event_id`). La igualdad se define por `event_id` + `version`.
+- **DA-009:** La auditoría pertenece a `EventMetadata`, nunca al evento principal.
+
+### Enums del dominio
+
+- `EventType` — enum extensible por módulos funcionales (no strings)
+- `EventSource` — `MANUAL`, `SQE`, `IMPORT`, `CATALOGO`, `API`, `MIGRATION`
+- `EventStatus` — `ACTIVE`, `INACTIVE`, `SUPERSEDED`, `DELETED` (no booleanos)
+
+### Estructura final
+
+```
+LinearEvent
+  ├── event_id (UUID, estable)
+  ├── event_type (EventType)
+  ├── axis (Axis)
+  ├── segment (Segment | None)
+  ├── attributes (dict)
+  ├── metadata (EventMetadata)
+  └── references (tuple[EventReference])
+
+EventMetadata
+  ├── source, status, version, revision
+  ├── created_at, created_by, updated_at
+  ├── confidence, tags, notes
+
+EventReference
+  ├── ref_type, ref_id, provider
+```
+
+### SPEC
+
+Revisada y aprobada con cambios — ver `Sprint-4.5-LinearEvents.md`
 
 ---
 
