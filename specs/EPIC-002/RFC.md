@@ -71,7 +71,68 @@ El SQE consume objetos del LRE y produce datos que el LRE puede representar como
 - Consultas puramente geométricas sin referencia a eje (ej: "¿qué geometrías están a menos de 500 m de este punto?").
 - Operaciones topológicas avanzadas (unión, intersección entre geometrías externas).
 
-## 7. Criterios de aceptación
+## 7. Decisiones arquitectónicas
+
+### D-01: El SQE no conoce el origen de los datos
+
+El SQE recibe únicamente objetos del dominio (`Feature`, `Geometry`, `Axis`,
+`LinearEvent`, `BoundingBox`). Nunca sabe si una geometría proviene de un
+Shapefile, GeoPackage, Catastro, WFS, GeoJSON, AutoCAD o base de datos.
+El origen de los datos es responsabilidad exclusiva de los adapters.
+
+### D-02: Resultados normalizados via QueryResult
+
+Todas las consultas devuelven un `QueryResult` con estructura homogénea:
+
+```python
+QueryResult
+├── features: list[IndexedFeature]
+├── events: list[LinearEvent]
+├── statistics: dict        # recuentos, longitudes, etc.
+├── warnings: list[str]
+└── metadata: dict           # parámetros de la consulta
+```
+
+Esto evita listas heterogéneas y unifica el idioma de la plataforma.
+
+### D-03: QueryContext como objeto de contexto
+
+Toda consulta recibe un `QueryContext` que agrupa:
+
+- CRS
+- Tolerancias geométricas
+- MeasureSystem
+- Opciones de consulta
+- Logger
+- Configuración del proyecto
+
+En lugar de pasar diez parámetros a cada método, se pasa un único objeto
+de contexto. Esto simplifica la API y facilita la evolución futura.
+
+### D-04: Estrategia de índices espaciales desacoplada
+
+Se define una interfaz `SpatialIndex` con implementaciones intercambiables:
+
+- `NoIndex` (escaneo lineal, v1)
+- `GridIndex` (cuadrícula regular)
+- `RTreeIndex` (R-tree clásico)
+- `STRtreeIndex` (Sort-Tile-Recursive)
+
+El `SpatialQueryEngine` usa la interfaz, no la implementación. Esto permite
+cambiar la estrategia de indexado sin afectar al resto del sistema.
+
+### D-05: Pipeline de consultas declarativo
+
+El SQE debe permitir construir pipelines de análisis encadenados:
+
+```
+Axis → Buffer → Intersect → Clip → CreateEvents → Export
+```
+
+No se implementa en la primera versión, pero la arquitectura debe habilitar
+este estilo declarativo sin forzar cambios en la API pública.
+
+## 8. Criterios de aceptación
 
 | CA | Descripción |
 |---|---|
