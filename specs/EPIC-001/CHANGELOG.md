@@ -45,9 +45,14 @@
 
 ### Sprint 4.5 — LinearEvents
 
-- *Pendiente de implementar*
-- SPEC creada en `Sprint-4.5-LinearEvents.md`
-- Diseño basado en `LinearEvent` (VO versionado) y `LinearEventSet` (aggregate root)
+- `EventType`, `EventSource`, `EventStatus` como Enums del dominio
+- `EventMetadata` separado del evento (DA-009)
+- `EventReference` para conectar entidades externas
+- `LinearEvent` como Value Object inmutable con `axis` + `segment` (sin geometría propia — DA-005)
+- `LinearEventSet` como Aggregate Root (DA-007): add, update, remove, filter, sort, merge, split, group_by, query_range, overlaps, gaps, audit_trail, statistics
+- 158 tests, cobertura 94-100%, ruff/mypy clean
+- **Architect Implementation Review:** 🟢 APPROVED (commit 8f25a70)
+- 5 decisiones DA-005 a DA-009 registradas en ARCHITECT_NOTES
 
 ### Sprint 4.4 — DynamicSegmentation
 
@@ -82,5 +87,5 @@
 
 ---
 
-**Sprint actual:** Ninguno (pendiente de inicio)
-**Próximo Sprint:** 4.1 — MeasureSystem
+**Sprint actual:** 4.6 — RouteCalibration (pendiente)
+**Último completado:** 4.5 — LinearEvents 🟢 APPROVED

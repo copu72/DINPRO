@@ -1,6 +1,6 @@
 # LRE Public API
 
-Versión de referencia: `v0.4.0-sprint-4.4`
+Versión de referencia: `0.5.0-dev` (Sprint 4.5 incluido)
 
 ## 1. Station
 
@@ -124,6 +124,95 @@ DynamicSegmentation(axis: Axis)  # Domain Service
 
 ---
 
+## 6. EventType / EventSource / EventStatus
+
+```python
+EventType.UNDEFINED                    # Extensible por módulos funcionales
+
+EventSource.MANUAL | SQE | IMPORT | CATALOGO | API | MIGRATION
+
+EventStatus.ACTIVE | INACTIVE | SUPERSEDED | DELETED
+```
+
+---
+
+## 7. EventMetadata
+
+```python
+EventMetadata(source=MANUAL, status=ACTIVE, version=1, revision="",
+              created_at=..., created_by="system", updated_at=...,
+              confidence=1.0, tags=(), notes="")  # frozen
+```
+
+| Método | Retorno | Descripción |
+|--------|---------|-------------|
+| `m.with_update(...)` | `EventMetadata` | Nueva instancia con version+1, timestamp actualizado |
+| `m.compute_revision(event_id, pk_start, pk_end, attributes, event_type)` | `str` | SHA256[:16] del contenido |
+
+---
+
+## 8. EventReference
+
+```python
+EventReference(ref_type: str, ref_id: str, provider: str)  # frozen
+```
+
+Referencia a entidades externas (catastro, IGN, DGT, etc.).
+
+---
+
+## 9. LinearEvent
+
+```python
+LinearEvent(event_id, event_type, axis, segment?, attributes, metadata, references)  # frozen
+```
+
+| Propiedad | Tipo | Origen |
+|-----------|------|--------|
+| `e.event_id` | `str` | UUID (estable) |
+| `e.event_type` | `EventType` | Directo |
+| `e.axis` | `Axis` | Directo |
+| `e.segment` | `Segment | None` | Directo |
+| `e.station_start` | `Station` | Derivado de segment |
+| `e.station_end` | `Station` | Derivado de segment |
+| `e.geometry` | `Polyline | None` | Derivado de segment |
+| `e.length` | `float` | Derivado de segment |
+| `e.attributes` | `dict` | Copia defensiva |
+| `e.metadata` | `EventMetadata` | Directo |
+| `e.references` | `tuple` | Directo |
+
+**Contrato:** Representa un hecho del dominio asociado a un intervalo PK. Nunca contiene lógica geométrica. Inmutable.
+
+---
+
+## 10. LinearEventSet
+
+```python
+LinearEventSet(axis: Axis)  # Aggregate Root
+```
+
+| Método | Retorno | Descripción |
+|--------|---------|-------------|
+| `les.add(event_type, segment, attributes, source, references)` | `LinearEvent` | Crea evento version=1 |
+| `les.update(event_id, segment, attributes, status, ...)` | `LinearEvent` | Nueva versión (v=n+1) |
+| `les.remove(event_id)` | `None` | Elimina activo |
+| `les.get(event_id)` | `LinearEvent | None` | Versión activa |
+| `les.get_version(event_id, version)` | `LinearEvent | None` | Versión específica |
+| `les.filter(event_type, status)` | `LinearEventSet` | Nuevo set filtrado |
+| `les.sort(by)` | `LinearEventSet` | Nuevo set ordenado |
+| `les.merge(other)` | `LinearEventSet` | Fusión (mismo axis) |
+| `les.split(event_id, pk_split)` | `(left, right)` | Divide un evento |
+| `les.group_by()` | `dict` | Agrupación por tipo |
+| `les.query_range(pk_start, pk_end)` | `list` | Eventos que intersectan el rango |
+| `les.overlaps(event_id)` | `list` | Eventos solapados |
+| `les.gaps(event_type)` | `list[(float, float)]` | Intervalos sin cobertura |
+| `les.audit_trail(event_id)` | `list` | Todas las versiones |
+| `les.statistics()` | `dict` | Métricas del set |
+| `les.count` | `int` | Número de eventos activos |
+| `les.events` | `list` | Eventos activos |
+
+---
+
 ## Contratos transversales
 
 1. **Inmutabilidad:** Todos los Value Object son `@dataclass(frozen=True)`.
@@ -145,7 +234,12 @@ Axis
   ├── LateralProjection
   └── DynamicSegmentation
         └── Segment
-              └── _extract_subpolyline (internal)
+              ├── _extract_subpolyline (internal)
+              └── LinearEventSet
+                    └── LinearEvent
+                          ├── EventType (enum)
+                          ├── EventMetadata
+                          └── EventReference
 ```
 
 ---
