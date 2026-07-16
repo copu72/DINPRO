@@ -71,7 +71,10 @@
 
 ### Sprint 4.6 — RouteCalibration
 
-*Pendiente de implementar*
+- RFC + SPEC aprobadas (Architect Review 🟢 APPROVED)
+- Decisiones D-13 a D-18, DA-010, DA-011 registradas
+- Modelo matemático: piecewise linear, f(d) y f⁻¹(s), O(log n) + O(1)
+- En implementación
 
 ### Sprint 4.7 — LongitudinalProfile
 
@@ -87,5 +90,5 @@
 
 ---
 
-**Sprint actual:** 4.6 — RouteCalibration (pendiente)
+**Sprint actual:** 4.6 — RouteCalibration (en implementación)
 **Último completado:** 4.5 — LinearEvents 🟢 APPROVED

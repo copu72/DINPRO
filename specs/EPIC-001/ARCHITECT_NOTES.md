@@ -226,6 +226,15 @@ Búsqueda O(log n) con `bisect`, interpolación O(1). Determinista, verificable,
 
 Ver `Sprint-4.6-RouteCalibration.md`
 
+### Architect Review
+
+🟢 **APPROVED** — sin observaciones bloqueantes.
+
+**IA-005 (futuro):** `resolve_station()` para recalibraciones.
+**IA-006:** `CalibrationIssue` debe incluir `severity`, `code`, `message`, `point_index`.
+**IA-007:** `interpolate()` es alias semántico de `station_at_distance(..., NONE)`.
+**IA-008:** `default_campaign` debe existir en `calibration_sets`; validar en `validate()`.
+
 ---
 
 ## Sprint 4.7 — LongitudinalProfile
