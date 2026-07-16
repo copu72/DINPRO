@@ -200,7 +200,31 @@ Revisada y aprobada con cambios — ver `Sprint-4.5-LinearEvents.md`
 
 ## Sprint 4.6 — RouteCalibration
 
-*Pendiente*
+### Decisiones de diseño (D-13 a D-18, DA-010, DA-011)
+
+- **D-13:** Calibración bidireccional — `station_at_distance()` y `distance_at_station()` como operaciones simétricas.
+- **D-14:** Discontinuidad no es propiedad de la geometría sino del sistema de medida. El eje permanece continuo; lo discontinuo es la estación.
+- **D-15:** PK decrecientes permitidos con advertencia (`WARNING`), no error.
+- **D-16:** `RouteCalibration` preparado para múltiples `CalibrationSet` desde la primera versión (`Sequence[CalibrationSet]` + `default_campaign`).
+- **D-17:** `RouteCalibration` es evolución de `MeasureSystem`. `MeasureSystem` se mantiene como facade.
+- **D-18:** Extrapolación con `ExtrapolationMode` enum (`NONE`, `LINEAR`, `CONSTANT`), no booleano.
+- **DA-010:** Monotonicidad geométrica — `CalibrationPoint` ordenados estrictamente por `distance`.
+- **DA-011:** Una calibración nunca modifica la geometría. Solo modifica la relación distancia-geométrica ↔ estación-oficial.
+
+### Modelo matemático
+
+Función a tramos lineales (piecewise linear):
+
+```
+f(d)  = s_i + (d - d_i) * (s_{i+1} - s_i) / (d_{i+1} - d_i)
+f⁻¹(s) = d_i + (s - s_i) * (d_{i+1} - d_i) / (s_{i+1} - s_i)
+```
+
+Búsqueda O(log n) con `bisect`, interpolación O(1). Determinista, verificable, independiente de la geometría.
+
+### RFC + SPEC
+
+Ver `Sprint-4.6-RouteCalibration.md`
 
 ---
 
