@@ -74,7 +74,9 @@
 - RFC + SPEC aprobadas (Architect Review 🟢 APPROVED)
 - Decisiones D-13 a D-18, DA-010, DA-011 registradas
 - Modelo matemático: piecewise linear, f(d) y f⁻¹(s), O(log n) + O(1)
-- En implementación
+- Implementado: CalibrationPoint, CalibrationSet, ExtrapolationMode, CalibrationIssue, RouteCalibration
+- 53 tests, coverage 90%+, ruff/mypy clean
+- **Architect Implementation Review:** 🟢 APPROVED (commit 560ae80)
 
 ### Sprint 4.7 — LongitudinalProfile
 
@@ -90,5 +92,5 @@
 
 ---
 
-**Sprint actual:** 4.6 — RouteCalibration (en implementación)
-**Último completado:** 4.5 — LinearEvents 🟢 APPROVED
+**Sprint actual:** 4.7 — LongitudinalProfile (pendiente)
+**Último completado:** 4.6 — RouteCalibration 🟢 APPROVED

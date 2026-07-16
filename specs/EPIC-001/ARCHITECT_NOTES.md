@@ -255,20 +255,6 @@ Ver `Sprint-4.6-RouteCalibration.md`
 
 ---
 
-
-
-## Sprint 4.6 — RouteCalibration
-
-*Pendiente*
-
----
-
-## Sprint 4.7 — LongitudinalProfile
-
-*Pendiente*
-
----
-
 ## Sprint 4.8 — Exporter
 
 *Pendiente*
